@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ListItem from '../ListItem/ListItem';
+import Header from '../Header/Header';
 import { LinearProgress } from '@material-ui/core';
 
 function Homepage() {
@@ -20,6 +21,8 @@ function Homepage() {
 
     return (
         <div>
+            <Header />
+            <h3>Welcome to <b>ABOUND CLOTHING!</b> Enjoy your shopping!</h3>
             <ListItem product={data} />
         </div>
     )
