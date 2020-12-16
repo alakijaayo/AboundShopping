@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import ListItem from '../ListItem/ListItem';
 import Header from '../Header/Header';
 import { LinearProgress } from '@material-ui/core';
+import { connect } from 'react-redux';
 
-function Homepage() {
+function Homepage(props) {
     const [data, setData] = useState(null);
 
     useEffect(() => {
@@ -21,11 +22,28 @@ function Homepage() {
 
     return (
         <div>
-            <Header />
+            <Header items={props.checkout} product={data}/>
             <h3>Welcome to <b>ABOUND CLOTHING!</b> Enjoy your shopping!</h3>
             <ListItem product={data} />
         </div>
     )
 }
 
-export default Homepage;
+const MapStateToProps = (state) => {
+    return {
+      checkout: state.checkout
+    }
+  }
+  
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      addToCart: (item) => {
+        dispatch({ type: 'ADD', payload: item })
+      },
+      removeFromCart: (item) => {
+        dispatch({ type: 'REMOVE', payload: item })
+      }
+    }
+  }
+
+  export default connect (MapStateToProps, mapDispatchToProps) (Homepage); 
