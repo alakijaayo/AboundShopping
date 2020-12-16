@@ -10,5 +10,8 @@ export default makeStyles(() => ({
     },
     title: {
         flexGrow: 1,
-    }
+    },
+    list: {
+        width: 350,
+    },
 }))
